@@ -3,3 +3,8 @@
 *.exe
 
 .DS_Store
+
+
+#Java
+.classpath
+*.class
