@@ -3,8 +3,10 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.Stack;
 
 public class Christmas {
@@ -51,24 +53,18 @@ public class Christmas {
 		}
 
 		public void resolveSecondQuestion() {
-			List<Integer> firstList = null;
-			for (int i = 0; i < numberOfGitfBoxes; i++) {
-				firstList = possibleIndexPairMap.get(i);
-				if (firstList != null) {
-					answerOfSecondQuestion++;
-					break;
-				}
+			for (int startIndex : possibleIndexPairMap.keySet()) {
+				DFS(startIndex, 1);
 			}
-			this.DFS(firstList, answerOfSecondQuestion);
 		}
 
-		private void DFS(List<Integer> list, int depth) {
-			for (int index : list) {
-				List<Integer> next = possibleIndexPairMap.get(index);
-				if (next == null) {
-					continue;
-				} else {
-					DFS(next, depth + 1);
+		private void DFS(int startIndex, int depth) {
+			List<Integer> endIndexList = possibleIndexPairMap.get(startIndex);
+			for (int endIndex : endIndexList) {
+				for (int nextStartIndex : possibleIndexPairMap.keySet()) {
+					if (nextStartIndex > endIndex) {
+						DFS(nextStartIndex, depth + 1);
+					}
 				}
 			}
 			if (depth > answerOfSecondQuestion) {
