@@ -42,7 +42,7 @@ struct RMQ{
     }
     
     int init(const vector<int>& array, int left, int right, int node){
-        if(left == right) return;
+        if(left == right) return rangeMin[node] = array[left];
         int mid = (left+right)/2;
         int leftMin = init(array, left, mid, node*2);
         int rightMin = init(array, mid+1, right, node*2+1);
