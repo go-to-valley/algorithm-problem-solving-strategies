@@ -25,7 +25,7 @@ Memoization의 시간 복잡도는 일반적으로는 다음식을 이용해 구
 
 ### Problems
 
--[와일드카드(ID: WILDCARD, 난이도: 중)](https://www.algospot.com/judge/problem/read/WILDCARD)
+- [와일드카드(ID: WILDCARD, 난이도: 중)](https://www.algospot.com/judge/problem/read/WILDCARD)
 
 
 
@@ -42,6 +42,6 @@ DP의 가장 일반적인 사용처는 최적화 문제의 해결이다. 최적�
 
 ### Problems
 
--[합친 LIS(ID: JLIS, 난이도: 하)](https://www.algospot.com/judge/problem/read/JLIS)
--[원주율 외우기(ID: PI, 난이도: 하)](https://www.algospot.com/judge/problem/read/PI)
--[Quantization(ID: QUANTIZE, 난이도: 중)](https://www.algospot.com/judge/problem/read/QUANTIZE)
+- [합친 LIS(ID: JLIS, 난이도: 하)](https://www.algospot.com/judge/problem/read/JLIS)
+- [원주율 외우기(ID: PI, 난이도: 하)](https://www.algospot.com/judge/problem/read/PI)
+- [Quantization(ID: QUANTIZE, 난이도: 중)](https://www.algospot.com/judge/problem/read/QUANTIZE)
