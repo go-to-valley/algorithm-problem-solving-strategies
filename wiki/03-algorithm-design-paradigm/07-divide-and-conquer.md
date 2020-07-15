@@ -14,27 +14,15 @@
 
 1부터 n까지의 합을 구하는 `fastSum`함수를 작성한다고 하자(n이 짝수라 가정)
 
-```math
-$fastSum() = 1 + 2 + 3 + \cdots + n = (1 + 2 + \cdots + \frac{n}{2}) + ((\frac{n}{2} + 1) + \cdots + n)$
-```
+![images/07/1.png](images/07/1.png)
 
-위 식에서
+위 식에서 fastSum(n/2)까지는 표현이 가능하나 그 이후 부분을 표현할 수가 없다. 이를 다음과 같이 바꿔주면
 
-```math
-$fastSum(\frac{n}{2})$
-```
-
-까지는 표현이 가능하나 그 이후 부분을 표현할 수가 없다. 이를 다음과 같이 바꿔주면
-
-```math
-$$(\frac{n}{2} + 1) + \cdots + n = (\frac{n}{2} + 1) + (\frac{n}{2} + 2) + \cdots + (\frac{n}{2} + \frac{n}{2}) \\ = \frac{n}{2} \times \frac{n}{2} \times (1 + 2 + \cdots + \frac{n}{2}) \\ = \frac{n}{2} \times \frac{n}{2} + fastSum(\frac{n}{2})$$
-```
+![images/07/2.png](images/07/2.png)
 
 이를 이용해서 최종적으로 다음과 같이 정리가 가능하다.
 
-```math
-$fastSum(n) = 2 \times fastSum(\frac{n}{2}) + \frac{n^2}{4}$
-```
+![images/07/3.png](images/07/3.png)
 
 이제 n이 홀수인 경우까지 고려해서 다음과 같이 알고리즘을 만들 수 있다.
 
@@ -69,7 +57,7 @@ SquareMatrix pow(SquareMatrix A, int m) {
 
 #### 나누어 떨어지지 않을 때 분할과 시간 복잡도
 
-m이 홀수일 때 $A^m = A \times A^{m-1}$로 나누지 않고 절반으로 나눌 경우 기저 사례까지의 분할 횟수가 줄어들기에 더 좋지 않냐는 의문이 생길 수 있다. 하지만 실제로 이 경우 계산 과정에서 생긴 각 부분 문제가 여러번 더 호출이 되는 경우가 생긴다(책 그림 참고) 따라서 전체 호출 횟수가 O(logm)이 아닌 선형에 가까워 질 수 있다. 이에 반해 기존 구현의 경우는 각 부분 문제가 한번 씩 호출되어 전체 호출수가 O(logm)이 된다.
+m이 홀수일 때 A^m = A \* A^(m-1)로 나누지 않고 절반으로 나눌 경우 기저 사례까지의 분할 횟수가 줄어들기에 더 좋지 않냐는 의문이 생길 수 있다. 하지만 실제로 이 경우 계산 과정에서 생긴 각 부분 문제가 여러번 더 호출이 되는 경우가 생긴다(책 그림 참고) 따라서 전체 호출 횟수가 O(logm)이 아닌 선형에 가까워 질 수 있다. 이에 반해 기존 구현의 경우는 각 부분 문제가 한번 씩 호출되어 전체 호출수가 O(logm)이 된다.
 
 따라서 분할 정복에서 분할 계획을 세울 때 상황에 따라 알맞은 분할 전략을 세워야 한다.
 
@@ -89,23 +77,17 @@ m이 홀수일 때 $A^m = A \times A^{m-1}$로 나누지 않고 절반으로 나
 
 카라츠바의 알고리즘은 다음과 같이 두 수(256자리)를 각각 절반으로 쪼갠다.
 
-```math
-$$a = a_1 \times 10^{128} + a_0 \\ b = b_1 \times 10^{128} + b_0$$
-```
+![images/07/4.png](images/07/4.png)
 
 이 때 카라츠바의 방식으로 a x b를 다음과 같이 네 조각을 이용해 나타낼 수 있다.
 
-```math
-$$a \times b = (a_1 \times 10^{128} + a_0) \times (b_1 \times 10^{128} + b_0) \\ = a_1 \times b_1 \times 10^{256} + (a_1 \times b_1 + a_0 \times b_0) \times 10^{128} + a_0 \times b_0$$
-```
+![images/07/5.png](images/07/5.png)
 
 하지만 이 경우 결국 전체 수행 시간이 O(n^2)이 돼서 의미가 없어진다.(책 참고)
 
 따라서 카라바츠는 이를 위해 네 조각을 세 조각으로 분리했다.
 
-```math
-$$z_0 = a_0 \times b_0 \\ z_1 = a_1 \times b_0 + a_0 \times b_1 \\ = (a_0 + a_1) \times (b_0 + b_1) - z_0 -z_2 \\ z_2 = a_1 \times b_1$$
-```
+![images/07/6.png](images/07/6.png)
 
 따라서 이 경우 곱셈을 세 번 밖에 쓰지 않게 되고 이를 이용해 알고리즘을 구현할 수 있다.
 
@@ -119,8 +101,8 @@ $$z_0 = a_0 \times b_0 \\ z_1 = a_1 \times b_0 + a_0 \times b_1 \\ = (a_0 + a_1)
 
 ## 문제
 
-### 쿼드 트리 뒤집기 (QUADTREE)
+1. [쿼드 트리 뒤집기 (QUADTREE)](https://www.algospot.com/judge/problem/read/QUADTREE)
 
-### 울타리 잘라내기 (FENCE)
+2. [울타리 잘라내기 (FENCE)](https://www.algospot.com/judge/problem/read/FENCE)
 
-### 팬미팅 (FANMEETING)
+3. [팬미팅 (FANMEETING)](https://www.algospot.com/judge/problem/read/FANMEETING)
